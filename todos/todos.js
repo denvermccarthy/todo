@@ -8,7 +8,9 @@ import {
 } from '../fetch-utils.js';
 import { renderTodo } from '../render-utils.js';
 
-checkAuth();
+window.addEventListener('load', async() => {
+    await getTodos();
+});
 
 const todosEl = document.querySelector('.todos');
 const todoForm = document.querySelector('.todo-form');

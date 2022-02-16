@@ -2,6 +2,8 @@ import {
     redirectIfLoggedIn, 
     signInUser, 
     signupUser,
+    getTodos,
+    createTodo,
 } from './fetch-utils.js';
 
 const signInForm = document.getElementById('sign-in');
@@ -36,3 +38,7 @@ signInForm.addEventListener('submit', async(event)=>{
         console.error(user);
     }
 });
+
+
+createTodo({ todo: 'hey' });
+getTodos();
