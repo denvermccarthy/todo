@@ -8,8 +8,11 @@ import {
 } from '../fetch-utils.js';
 import { renderTodo } from '../render-utils.js';
 
+checkAuth();
+
+
 window.addEventListener('load', async() => {
-    await getTodos();
+    
 });
 
 const todosEl = document.querySelector('.todos');
@@ -19,13 +22,15 @@ const deleteButton = document.querySelector('.delete-button');
 
 todoForm.addEventListener('submit', async(e) => {
     // on submit, create a todo, reset the form, and display the todos
+    e.preventDefault();
+
 });
 
 async function displayTodos() {
     // fetch the todos
-    
+    const todos = await getTodos();
     // display the list of todos
-
+    
     // be sure to give each todo an event listener
 
     // on click, complete that todo
