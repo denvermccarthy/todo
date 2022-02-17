@@ -12,7 +12,7 @@ test('renderTodo with a true completed value returns div with a class of complet
     // Call the function you're testing and set the result to a const
     const actual = renderTodo({
         todo: 'Walk Dog',
-        completed: true
+        complete: true
     });
 
     //Expect
