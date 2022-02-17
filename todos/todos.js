@@ -10,6 +10,7 @@ import { renderTodo } from '../render-utils.js';
 
 checkAuth();
 
+
 const todosEl = document.querySelector('.todos');
 const todoForm = document.querySelector('.todo-form');
 const logoutButton = document.querySelector('#logout');
@@ -17,19 +18,25 @@ const deleteButton = document.querySelector('.delete-button');
 
 todoForm.addEventListener('submit', async(e) => {
     // on submit, create a todo, reset the form, and display the todos
+    e.preventDefault();
+    const data = new FormData(todoForm);
+    await createTodo(data.get('todo'));
+    displayTodos();
+    todoForm.reset();
 });
 
 async function displayTodos() {
-    // fetch the todos
-    
-    // display the list of todos
-
-    // be sure to give each todo an event listener
-
-    // on click, complete that todo
+    todosEl.textContent = '';
+    const todos = await getTodos();
+    todos.forEach(element => {
+        const div = renderTodo(element);
+        div.addEventListener('click', async() => {
+            await completeTodo(element.id);
+            displayTodos();
+        });
+        todosEl.append(div);    
+    });
 }
-
-// add an on load listener that fetches and displays todos on load
 
 logoutButton.addEventListener('click', () => {
     logout();
@@ -37,7 +44,7 @@ logoutButton.addEventListener('click', () => {
 
 
 deleteButton.addEventListener('click', async() => {
-    // delete all todos
-
-    // then refetch and display the updated list of todos
+    await deleteAllTodos();
+    displayTodos();
 });
+displayTodos();
